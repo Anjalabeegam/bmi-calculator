@@ -1,0 +1,27 @@
+import streamlit as st
+
+st.title("Dr. Anjala Beegam Body Balance Calculator")
+
+name = st.text_input("Enter your name")
+weight = st.number_input("Enter weight in kg", min_value=1.0)
+height_cm = st.number_input("Enter height in cm", min_value=1.0)
+
+if st.button("Calculate BMI"):
+    height_m = height_cm / 100
+    bmi = weight / (height_m ** 2)
+
+    st.write("Hello", name)
+    st.write("Your BMI is:", round(bmi, 2))
+
+    if bmi < 18.5:
+        st.success("Category: Underweight")
+        st.write("Improve nutrition, add protein and strengthen digestion.")
+    elif 18.5 <= bmi < 25:
+        st.success("Category: Normal Weight")
+        st.write("Maintain balanced diet and regular activity.")
+    elif 25 <= bmi < 30:
+        st.warning("Category: Overweight")
+        st.write("Reduce fried foods, improve sleep, increase walking.")
+    else:
+        st.error("Category: Obese")
+        st.write("Strict diet control and structured lifestyle correction needed.")
